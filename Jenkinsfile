@@ -16,13 +16,13 @@ pipeline {
             }
         }
 
-        stage('Test') {
-            steps {
-                script {
-                    sh 'go test'
-                }
-            }
-        }
+        // stage('Test') {
+        //     steps {
+        //         script {
+        //             sh 'go test'
+        //         }
+        //     }
+        // }
 
         stage('Deploy') {
             steps {

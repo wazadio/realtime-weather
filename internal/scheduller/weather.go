@@ -50,8 +50,7 @@ func (s *scheduller) RunWeather(c context.Context, freq Frequency, duration time
 			return
 		case <-ticker.C:
 			schReqId := fmt.Sprintf("SCHEDULLER_%s", generator.RandomAlnum())
-			var requestIdKey types.ContextKey = "request_id"
-			ctx := context.WithValue(c, requestIdKey, schReqId)
+			ctx := context.WithValue(c, "request_id", schReqId)
 			logger.Print(ctx, logger.INFO, fmt.Sprintf("%s : weather", SCHEDULLER_START))
 			limit, offset := LIMIT, INIT_OFFSET
 			for {

@@ -11,7 +11,7 @@ pipeline {
         stage('Build and Run') {
             steps {
                 script {
-                    sh 'docker-compose up -d --build'
+                    sh '/home/entrust/Public/docker-compose/docker-compose up -d --build'
                 }
             }
         }
@@ -28,8 +28,8 @@ pipeline {
             steps {
                 script {
                     sh '''
-                    docker-compose down
-                    docker-compose up -d
+                    /home/entrust/Public/docker-compose/docker-compose down
+                    /home/entrust/Public/docker-compose/docker-compose up -d
                     '''
                 }
             }
@@ -38,7 +38,7 @@ pipeline {
 
     post {
         always {
-            sh 'docker-compose down'
+            sh '/home/entrust/Public/docker-compose/docker-compose down'
             cleanWs()
         }
     }

@@ -12,7 +12,6 @@ import (
 	"github.com/wazadio/realtime-weather/pkg"
 	"github.com/wazadio/realtime-weather/pkg/logger"
 	"github.com/wazadio/realtime-weather/pkg/rest"
-	"github.com/wazadio/realtime-weather/pkg/types"
 )
 
 func main() {
@@ -33,8 +32,7 @@ func main() {
 	restClient := rest.NewRest()
 
 	// scheduller
-	var environmentKey types.ContextKey = "environment"
-	schedullerCtx := context.WithValue(ctx, environmentKey, logger.SCHEDULLER)
+	schedullerCtx := context.WithValue(ctx, "environment", logger.SCHEDULLER)
 	newScheduller := scheduller.NewScheduller(db, restClient)
 	go newScheduller.RunWeather(schedullerCtx, scheduller.Frequency(scheduller.ALWAYS), 1*time.Minute)
 
